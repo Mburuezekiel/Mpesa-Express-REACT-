@@ -1,17 +1,55 @@
+import React, { useEffect, useState } from 'react';
+import { CheckCircle } from 'lucide-react';
+
 export default function PaymentSuccess() {
+  const [timeLeft, setTimeLeft] = useState(30);
+  const redirectUrl = "https://www.inuafund.co.ke/account/donations";
+
+  useEffect(() => {
+    // Set up the countdown timer
+    const timer = setInterval(() => {
+      setTimeLeft((prevTime) => {
+        if (prevTime <= 1) {
+          clearInterval(timer);
+          window.location.href = redirectUrl;
+          return 0;
+        }
+        return prevTime - 1;
+      });
+    }, 1000);
+
+    // Clean up the timer when component unmounts
+    return () => clearInterval(timer);
+  }, []);
+
   return (
-    <div className="space-y-2 text-center text-black p-10 bg-gray-100">
-      <h1>Your Payment was processed successfully</h1>
-      <h1>Thank You for your Donation</h1>
-      <p className="mt-4">You can find the  donation details at :</p>
-      <a
-        href="https://www.inuafund.co.ke/account/donations"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="text-blue-500 underline"
-      >
-        My Donations
-      </a>
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-b from-green-50 to-green-100">
+      <div className="max-w-md w-full mx-auto bg-white rounded-xl shadow-lg overflow-hidden p-8">
+        <div className="flex flex-col items-center space-y-6">
+          <div className="bg-green-100 p-3 rounded-full">
+            <CheckCircle className="h-12 w-12 text-green-600" />
+          </div>
+          
+          <div className="text-center space-y-2">
+            <h1 className="text-2xl font-bold text-gray-800">Payment Successful!</h1>
+            <p className="text-gray-600">Thank you for your generous donation</p>
+            
+            <div className="mt-6 pt-6 border-t border-gray-100">
+              <p className="text-sm text-gray-500">You will be redirected in {timeLeft} seconds</p>
+              <a
+                href={redirectUrl}
+                className="mt-4 inline-block px-6 py-3 bg-green-600 text-white font-medium rounded-lg shadow-md hover:bg-green-700 transition-colors"
+              >
+                View My Donations
+              </a>
+            </div>
+            
+            <p className="mt-4 text-xs text-gray-400">
+              Your donation receipt has been emailed to you
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
