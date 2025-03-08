@@ -450,7 +450,7 @@ function PaymentForm() {
                         placeholder="Enter your email"
                         className="pl-10 border-gray-300 text-black"
                       />
-                      <p className="text-xs text-gray-500 mt-1">We'll send your donation receipt to this email</p>
+                      <p className="text-xs text-gray-500 mt-1">We will send your donation receipt to this email</p>
                     </div>
                   </div>
                   
@@ -554,7 +554,7 @@ function PaymentForm() {
                       <div>
                         <p className="text-sm text-gray-700 font-medium">What happens next?</p>
                         <p className="text-xs text-gray-600 mt-1">
-                          You'll receive an M-Pesa prompt on your phone. Enter your PIN to complete the donation.
+                          You will receive an M-Pesa prompt on your phone. Enter your PIN to complete the donation.
                         </p>
                       </div>
                     </div>
