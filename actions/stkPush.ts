@@ -75,7 +75,7 @@ export async function sendStkPush(data: StkPushData): Promise<StkPushResponse> {
     const accessToken = authResponse.data.access_token;
     
     // Prepare the STK push request
-    const callbackURL = process.env.MPESA_CALLBACK_URL || "https://www.inuafund.co.ke/api/mpesa/callback";
+    const callbackURL = process.env.MPESA_CALLBACK_URL || "https://www.inuafund.co.ke/account/donations";
     
     console.log(`Initiating STK Push for phone ${phoneNumber} with callback URL: ${callbackURL}`);
     
