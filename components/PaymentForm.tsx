@@ -248,7 +248,8 @@ function PaymentForm() {
 
       setStkQueryLoading(true);
       stkPushQueryWithIntervals(checkoutRequestId);
-    } catch (err) {
+    }  catch (err) {
+      console.error("Detailed error:", err); 
       setLoading(false);
       showFeedback("An unexpected error occurred. Please try again.", "error");
     }
