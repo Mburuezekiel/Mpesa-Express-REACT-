@@ -552,7 +552,7 @@ function PaymentForm() {
                     <div className="flex items-start gap-2">
                       <Info className="h-4 w-4 text-orange-500 mt-0.5 flex-shrink-0" />
                       <p className="text-xs text-gray-600">
-                        You'll receive an M-Pesa prompt. Enter your PIN to complete the donation.
+                        You will receive an M-Pesa prompt. Enter your PIN to complete the donation.
                       </p>
                     </div>
                   </div>
