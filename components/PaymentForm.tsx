@@ -760,7 +760,7 @@ function PaymentForm() {
               <div className="mt-6 flex items-center justify-center">
                 <div className="flex items-center text-xs text-gray-500">
                   <Lock className="h-3 w-3 mr-1" />
-                  Secure payment processing via M-Pesa
+                  Secure payment processing via M-Pesa.
                 </div>
               </div>
             </div>
