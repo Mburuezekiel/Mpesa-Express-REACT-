@@ -179,6 +179,43 @@ function PaymentForm() {
   };
 
   // STK Push query function with enhanced timeout handling
+  // const stkPushQueryWithIntervals = (CheckoutRequestID: string) => {
+  //   const timer = setInterval(async () => {
+  //     reqcount += 1;
+   
+  //     if (reqcount === 15) {
+  //       clearInterval(timer);
+  //       setStkQueryLoading(false);
+  //       setLoading(false);
+  //       showFeedback("The payment request has timed out. Please try again.", "error");
+  //     }
+   
+  //     const { data, error } = await stkPushQuery(CheckoutRequestID);
+   
+  //     if (error) {
+  //       if (error.response.data.errorCode !== "500.001.1001") {
+  //         clearInterval(timer);
+  //         setStkQueryLoading(false);
+  //         setLoading(false);
+  //         showFeedback(error?.response?.data?.errorMessage || "Payment processing failed", "error");
+  //       }
+  //     }
+   
+  //     if (data) {
+  //       if (data.ResultCode === "0") {
+  //         clearInterval(timer);
+  //         setStkQueryLoading(false);
+  //         setLoading(false);
+  //         setSuccess(true);
+  //       } else {
+  //         clearInterval(timer);
+  //         setStkQueryLoading(false);
+  //         setLoading(false);
+  //         showFeedback(data?.ResultDesc || "Payment processing failed", "error");
+  //       }
+  //     }
+  //   }, 10000);
+  // };
   const stkPushQueryWithIntervals = (CheckoutRequestID: string) => {
     const timer = setInterval(async () => {
       reqcount += 1;
@@ -193,7 +230,7 @@ function PaymentForm() {
       const { data, error } = await stkPushQuery(CheckoutRequestID);
    
       if (error) {
-        if (error.response.data.errorCode !== "500.001.1001") {
+        if (error.response?.data?.errorCode !== "500.001.1001") {
           clearInterval(timer);
           setStkQueryLoading(false);
           setLoading(false);
@@ -206,6 +243,23 @@ function PaymentForm() {
           clearInterval(timer);
           setStkQueryLoading(false);
           setLoading(false);
+          
+          // Save transaction details to localStorage before showing success page
+          localStorage.setItem('transactionId', data.CheckoutRequestID || CheckoutRequestID);
+          localStorage.setItem('donationAmount', dataFromForm.amount);
+          localStorage.setItem('donorName', dataFromForm.name);
+          localStorage.setItem('donorPhone', dataFromForm.mpesa_phone); // Save phone number too
+          localStorage.setItem('campaignName', dataFromForm.purpose);
+          
+          // Optional: Log to verify data is being saved
+          console.log('Saved payment details to localStorage:', {
+            transactionId: data.CheckoutRequestID || CheckoutRequestID,
+            amount: dataFromForm.amount,
+            donor: dataFromForm.name,
+            phone: dataFromForm.mpesa_phone,
+            campaign: dataFromForm.purpose
+          });
+          
           setSuccess(true);
         } else {
           clearInterval(timer);
