@@ -66,7 +66,7 @@ interface DataFromForm {
   mpesa_phone: string;
   name: string;
   amount: string;
-  email: string; // Added email field
+  email: string; // Added email 
   purpose: string; // Added purpose field
 }
 
