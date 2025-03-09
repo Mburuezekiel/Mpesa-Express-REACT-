@@ -18,6 +18,14 @@ import { Separator } from "@/components/ui/separator";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle, ChevronLeft, Banknote,ChevronRight, CreditCard, DollarSign, Heart, Info, Lock, Send, Smartphone, User, Wallet } from "lucide-react";
 
+// Define step interface
+interface Step {
+  id: string;
+  title: string;
+  icon: React.ElementType;
+  description: string;
+}
+
 // Predefined suggested donation amounts with descriptions
 const SUGGESTED_AMOUNTS = [
   { value: 10, label: "Basic Support", description: "Help us cover basic operational costs" },
@@ -29,7 +37,7 @@ const SUGGESTED_AMOUNTS = [
 ];
 
 // Multi-step donation process with icons
-const DONATION_STEPS = [
+const DONATION_STEPS: Step[] = [
   { id: 'amount', title: 'Donation Amount', icon: DollarSign, description: 'Choose how much to donate' },
   { id: 'details', title: 'Personal Details', icon: User, description: 'Tell us about yourself' },
   { id: 'confirm', title: 'Confirm', icon: CheckCircle, description: 'Review and complete' }
@@ -60,6 +68,12 @@ interface DataFromForm {
   amount: string;
   email: string; // Added email field
   purpose: string; // Added purpose field
+}
+
+// Define interfaces for step indicator
+interface StepIndicatorProps {
+  step: Step;
+  index: number;
 }
 
 function PaymentForm() {
@@ -567,11 +581,11 @@ function PaymentForm() {
     }
   };
 
-  // Custom StepIndicator component
-  const StepIndicator = ({ step, index }) => {
+  // Custom StepIndicator component with proper type definition
+  const StepIndicator = ({ step, index }: StepIndicatorProps) => {
     const isActive = index === currentStep;
     const isCompleted = index < currentStep;
-    
+
     return (
       <div 
         className={`
@@ -603,7 +617,7 @@ function PaymentForm() {
           </div>
           <span className="text-xs font-medium mt-1 hidden md:block">{step.title}</span>
         </div>
-        
+
         {index < DONATION_STEPS.length - 1 && (
           <div 
             className={`
