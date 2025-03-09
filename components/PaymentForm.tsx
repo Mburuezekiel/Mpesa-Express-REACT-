@@ -812,7 +812,7 @@ function PaymentForm() {
 }
 
 // Missing icon imports
-const Mail = ({ className }) => {
+const Mail = ({ className }: { className?: string }) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
       <rect width="20" height="16" x="2" y="4" rx="2"></rect>
@@ -821,7 +821,7 @@ const Mail = ({ className }) => {
   );
 };
 
-const Shield = ({ className }) => {
+const Shield = ({ className }: { className?: string }) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
       <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
@@ -829,7 +829,7 @@ const Shield = ({ className }) => {
   );
 };
 
-const Loader = ({ className }) => {
+const Loader = ({ className }: { className?: string }) => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
       <path d="M21 12a9 9 0 1 1-6.219-8.56"></path>
