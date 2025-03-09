@@ -204,7 +204,7 @@ function PaymentForm() {
           showFeedback(data?.ResultDesc || "Payment processing failed", "error");
         }
       }
-    }, 2000);
+    }, 10000);
   };
  
   // Enhanced form submission handler
