@@ -71,7 +71,7 @@ export default function PaymentSuccess() {
             
             {saveStatus === 'error' && (
               <p className="text-red-500 text-sm mt-2">
-                Note: There was an issue saving your donation details. Don't worry, your payment was processed successfully.
+                Note: There was an issue saving your donation details. Do not worry, your payment was processed successfully.
               </p>
             )}
             
