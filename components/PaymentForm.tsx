@@ -513,9 +513,9 @@ function PaymentForm() {
                       <span className="text-gray-600 font-medium text-sm">Amount</span>
                       <span className="font-bold text-green-600">Ksh {parseFloat(dataFromForm.amount).toLocaleString()}</span>
                     </div>
-                    <div className="text-xs text-gray-500 mt-1">
-                      Purpose: {donationPurposes.find(p => p.id === dataFromForm.purpose)?.label || 'General Support'}
-                    </div>
+                    <div className="text-xs text-gray-500 mt-2">
+  Purpose: {donationPurposes.find(p => p.id === dataFromForm.purpose)?.label || 'General Support'} Support
+</div>
                   </div>
                   
                   <Separator className="my-2" />
