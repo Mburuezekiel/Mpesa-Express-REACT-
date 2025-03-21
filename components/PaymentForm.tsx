@@ -252,33 +252,50 @@ function PaymentForm() {
   };
 
   // Step indicator component
-  const StepIndicator = ({ step, index, currentStepIndex }) => {
-    const isActive = index === currentStepIndex;
-    const isCompleted = index < currentStepIndex;
+ 
+interface Step {
+  id: string;
+  title: string;
+  icon: React.ComponentType;
+  description: string;
+}
 
-    return (
-      <div className="flex flex-col items-center">
-        <div 
-          className={`
-            w-8 h-8 flex items-center justify-center rounded-full border-2
-            ${isActive 
-              ? 'border-green-500 bg-green-50'
-              : isCompleted
-                ? 'border-green-500 bg-green-500 text-white'
-                : 'border-gray-300 bg-gray-50'
-            }
-          `}
-        >
-          {isCompleted ? (
-            <CheckCircle className="h-4 w-4" />
-          ) : (
-            <span className="text-sm font-medium">{index + 1}</span>
-          )}
-        </div>
-        <span className="text-xs font-medium mt-1 hidden sm:block">{step.title}</span>
+// Update the StepIndicator component with proper type annotations
+const StepIndicator = ({ 
+  step, 
+  index, 
+  currentStepIndex 
+}: { 
+  step: Step; 
+  index: number; 
+  currentStepIndex: number 
+}) => {
+  const isActive = index === currentStepIndex;
+  const isCompleted = index < currentStepIndex;
+
+  return (
+    <div className="flex flex-col items-center">
+      <div 
+        className={`
+          w-8 h-8 flex items-center justify-center rounded-full border-2
+          ${isActive 
+            ? 'border-green-500 bg-green-50'
+            : isCompleted
+              ? 'border-green-500 bg-green-500 text-white'
+              : 'border-gray-300 bg-gray-50'
+          }
+        `}
+      >
+        {isCompleted ? (
+          <CheckCircle className="h-4 w-4" />
+        ) : (
+          <span className="text-sm font-medium">{index + 1}</span>
+        )}
       </div>
-    );
-  };
+      <span className="text-xs font-medium mt-1 hidden sm:block">{step.title}</span>
+    </div>
+  );
+};
 
   // Dynamic step content renderer
   const renderStepContent = () => {
